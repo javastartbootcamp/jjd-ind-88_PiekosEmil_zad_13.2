@@ -30,6 +30,23 @@ public class MainTest {
         assertThat(output).contains("Największa liczba w liście to 5");
     }
 
+    @Test
+    void shouldWorkFrom1To3() {
+        // given
+        provideInput("1", "2", "3", "-12");
+
+        // when
+        Main.main(new String[]{});
+
+        // then
+        String output = outContent.toString().trim();
+        assertThat(output).contains("3, 2, 1");
+        String outputWithoutSpaces = output.replaceAll(" ", "");
+        assertThat(outputWithoutSpaces).contains("1+2+3=6");
+        assertThat(output).contains("Najmniejsza liczba w liście to 1");
+        assertThat(output).contains("Największa liczba w liście to 3");
+    }
+
     private void provideInput(String... lines) {
         String input = String.join("\r\n", lines);
 
