@@ -10,16 +10,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class MainTest {
 
     private final PrintStream originalOut = System.out;
-    private final InputStream originalIn = System.in;
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+
+    private Main main = new Main();
 
     @Test
     void shouldWorkFrom1To5() {
         // given
-        provideInput("1", "2", "3", "4", "5", "-2");
+        Scanner scanner = provideInput("1", "2", "3", "4", "5", "-2");
 
         // when
-        Main.main(new String[]{});
+        main.run(scanner);
 
         // then
         String output = outContent.toString().trim();
@@ -33,10 +34,10 @@ public class MainTest {
     @Test
     void shouldWorkFrom1To3() {
         // given
-        provideInput("1", "2", "3", "-12");
+        Scanner scanner = provideInput("1", "2", "3", "-12");
 
         // when
-        Main.main(new String[]{});
+        main.run(scanner);
 
         // then
         String output = outContent.toString().trim();
@@ -47,11 +48,11 @@ public class MainTest {
         assertThat(output).contains("Największa liczba w liście to 3");
     }
 
-    private void provideInput(String... lines) {
+    private Scanner provideInput(String... lines) {
         String input = String.join("\r\n", lines);
 
         ByteArrayInputStream testIn = new ByteArrayInputStream(input.getBytes());
-        System.setIn(testIn);
+        return new Scanner(testIn);
     }
 
     @BeforeEach
@@ -62,7 +63,6 @@ public class MainTest {
     @AfterEach
     void cleanup() {
         System.setOut(originalOut);
-        System.setIn(originalIn);
     }
 
 }
