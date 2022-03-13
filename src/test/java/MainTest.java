@@ -63,7 +63,7 @@ public class MainTest {
         String output = outContent.toString().trim();
         Assertions.assertAll(
                 () -> assertThat(output).contains("4, 2, 8, 4"),
-                () -> assertThat(output).contains("4 + 8 + 2 + 4 = 16"),
+                () -> assertThat(output).contains("4 + 8 + 2 + 4 = 18"),
                 () -> assertThat(output).contains("Najmniejsza liczba w liście to 2"),
                 () -> assertThat(output).contains("Największa liczba w liście to 8")
         );
