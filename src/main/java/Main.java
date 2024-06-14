@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    static List<Integer> numbers = new ArrayList<>();
+    private List<Integer> numbers = new ArrayList<>();
 
     public static void main(String[] args) {
         Main main = new Main();
@@ -49,10 +49,9 @@ public class Main {
 
     public void largestNumber(List<Integer> numbers) {
         int largest = 0;
-        for (int i = 0; i < numbers.size(); i++) {
-            int a = numbers.get(i);
+        for (int a : numbers) {
             if (a > largest) {
-                largest = numbers.get(i);
+                largest = a;
             }
         }
         System.out.println("Największa liczba w liście to " + largest);
@@ -60,10 +59,9 @@ public class Main {
 
     public void smallestNumber(List<Integer> numbers) {
         int smallest = Integer.MAX_VALUE;
-        for (int i = 0; i < numbers.size(); i++) {
-            int a = numbers.get(i);
+        for (int a : numbers) {
             if (a < smallest) {
-                smallest = numbers.get(i);
+                smallest = a;
             }
         }
         System.out.println("Najmniejsza liczba w liście to " + smallest);
